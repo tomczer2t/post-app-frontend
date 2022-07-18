@@ -1,0 +1,10 @@
+{
+  "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      "types": [
+        "../cloud_app_back/src/types"
+      ]
+    }
+  }
+}

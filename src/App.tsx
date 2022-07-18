@@ -1,25 +1,52 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { Route, Routes } from 'react-router-dom';
+import { MainLayout } from './layout/MainLayout';
+import { HomeView } from './views/HomeView';
+import { PostCreatorView } from './views/PostCreatorView';
+import { RegistrationView } from './views/RegistrationView';
+import { LoginView } from './views/LoginView';
+import { EmailVerificationView } from './views/EmailVerificationView';
+import { PostsView } from './views/PostsView';
+import { SpecificPost } from './views/SpecificPost';
+import { AuthorView } from './views/AuthorView';
+import { ProfileView } from './views/ProfileView';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Routes>
+      <Route path="/"
+             element={ <MainLayout /> }>
+
+        <Route index
+               element={ <HomeView /> } />
+
+        <Route path="posts">
+          <Route index
+                 element={ <PostsView /> } />
+          <Route path="create"
+                 element={ <PostCreatorView /> } />
+          <Route path=":postId"
+                 element={ <SpecificPost /> } />
+        </Route>
+
+        <Route path="account">
+          <Route path="register"
+                 element={ <RegistrationView /> } />
+          <Route path="login"
+                 element={ <LoginView /> } />
+          <Route path="verify/:verificationCode"
+                 element={ <EmailVerificationView /> } />
+          <Route path="profile"
+                 element={ <ProfileView /> } />
+        </Route>
+
+        <Route path="authors">
+          <Route path=":author"
+                 element={ <AuthorView /> } />
+        </Route>
+
+      </Route>
+    </Routes>
   );
 }
 
