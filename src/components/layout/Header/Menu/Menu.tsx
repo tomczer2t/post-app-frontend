@@ -42,7 +42,7 @@ export const Menu = () => {
           <MenuItem label="posts" pathname="posts" />
           { auth && (
             <>
-              <MenuItem label="following" pathname="following" />
+              <MenuItem label="favourite authors" pathname="favourite-authors" />
               <MenuItem label="create post" pathname="posts/create" />
               <MenuItem label="profile" pathname="account/profile" />
             </>

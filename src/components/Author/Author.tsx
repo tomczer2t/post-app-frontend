@@ -39,7 +39,8 @@ export const Author = () => {
       <Loading loading={ loading } />
       { !loading && (
         <>
-          <AuthorHeader username={posts[0].username} avatarURL={posts[0].avatarURL} />
+          <AuthorHeader username={ posts[0].username }
+                        avatarURL={ posts[0].avatarURL } />
           <PostsList tinyPosts={ posts } />
         </>
       ) }

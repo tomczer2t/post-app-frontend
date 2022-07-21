@@ -10,6 +10,7 @@ import { PostsView } from './views/PostsView';
 import { SpecificPost } from './views/SpecificPost';
 import { AuthorView } from './views/AuthorView';
 import { ProfileView } from './views/ProfileView';
+import { FavouriteAuthorsView } from './views/FavouriteAuthorsView';
 
 function App() {
   return (
@@ -43,6 +44,10 @@ function App() {
         <Route path="authors">
           <Route path=":author"
                  element={ <AuthorView /> } />
+        </Route>
+
+        <Route path="favourite-authors">
+          <Route index element={ <FavouriteAuthorsView /> } />
         </Route>
 
       </Route>
