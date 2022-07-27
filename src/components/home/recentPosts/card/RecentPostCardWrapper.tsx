@@ -21,7 +21,7 @@ export const RecentPostCardWrapper = ({ children, photoURL, postId }: Props) => 
   };
 
   return (
-      <div className="relative aspect-4/3 bg-slate-100 w-full overflow-hidden"
+      <div className="relative aspect-4/3 bg-slate-100 w-full overflow-hidden min-h-[260px]"
            onMouseEnter={ handleMouseEnter }
            onMouseLeave={ handleMouseLeave }>
         <Link to={ `/posts/${ postId }` }>
