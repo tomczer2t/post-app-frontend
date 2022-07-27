@@ -1,5 +1,4 @@
-import React, { createContext, useEffect, useLayoutEffect, useState } from 'react';
-import { useRefresh } from '../hooks/useRefresh';
+import React, { createContext, useState } from 'react';
 
 export const AuthContext = createContext<{ auth: null | Auth, setAuth: React.Dispatch<React.SetStateAction<Auth | null>> }>({
   auth: null,
@@ -24,7 +23,6 @@ interface Auth {
 export const AuthProvider = ({ children }: Props) => {
 
   const [auth, setAuth] = useState<null | Auth>(null);
-
 
   return (
     <AuthContext.Provider value={ { auth, setAuth } }>

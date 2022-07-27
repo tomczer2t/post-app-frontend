@@ -45,7 +45,9 @@ export const PostEditor = () => {
       setId(postID);
       getPost(postID);
     } else {
-      setLoading(false);
+      setTimeout(() => {
+        setLoading(false);
+      }, 100)
     }
   }, [postID]);
 
