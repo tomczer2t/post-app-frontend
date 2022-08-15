@@ -1,12 +1,12 @@
 import { useEffect, useState } from 'react';
-import { PostsListAllResponse } from 'types';
+import { PostsListAllResponse, TinyPost } from 'types';
 import { axios } from '../../../api/axios';
 import { RecentPostsList } from './RecentPostsList';
 
 
 export const RecentPosts = () => {
 
-  const [recentPosts, setRecentPosts] = useState<PostsListAllResponse>([]);
+  const [recentPosts, setRecentPosts] = useState<TinyPost[]>([]);
   const [loading, setLoading] = useState(true);
 
 
@@ -16,8 +16,8 @@ export const RecentPosts = () => {
 
   const fetchRecentPosts = async () => {
     try {
-      const { data } = await axios.get('posts?limit=4') as { data: PostsListAllResponse};
-      setRecentPosts(data);
+      const { data } = await axios.get<PostsListAllResponse>('posts?limit=4');
+      setRecentPosts(data.posts);
     } catch (error) {
       console.log({ error });
     } finally {

@@ -3,17 +3,21 @@ import { useAxiosPrivate } from '../../hooks/useAxiosPrivate';
 import { Loading } from '../common/loading/Loading';
 import { PostCard } from '../posts/PostCard';
 import { TinyPost } from 'types';
+import { useAuth } from '../../hooks/useAuth';
 
 export const FavouriteAuthors = () => {
 
   const [posts, setPosts] = useState<TinyPost[]>([]);
   const [loading, setLoading] = useState(true);
+  const { auth } = useAuth();
 
   const axiosPrivate = useAxiosPrivate();
 
   useEffect(() => {
-    fetchPostsByFavAuthors()
-  }, []);
+    if (auth) {
+      fetchPostsByFavAuthors()
+    }
+  }, [auth]);
 
   const fetchPostsByFavAuthors = async () => {
     const { data } = await axiosPrivate.get<TinyPost[]>('/posts/favourite-authors');

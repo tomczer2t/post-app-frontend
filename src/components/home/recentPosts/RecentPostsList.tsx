@@ -1,8 +1,8 @@
-import { PostsListAllResponse } from 'types';
+import { TinyPost } from 'types';
 import { RecentPostCard } from './card/RecentPostCard';
 
 interface Props {
-  recentPosts: PostsListAllResponse;
+  recentPosts: TinyPost[];
 }
 
 export const RecentPostsList = ({ recentPosts }: Props) => {

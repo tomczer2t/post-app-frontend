@@ -25,7 +25,7 @@ export const Author = () => {
 
   const fetchAuthorPosts = async (author: string) => {
     try {
-      const { data } = await axios.get(`users?username=${ author }`) as { data: PostsListAllResponse };
+      const { data } = await axios.get<TinyPost[]>(`users?username=${ author }`);
       setPosts(data);
     } catch (error) {
       console.log({ error });

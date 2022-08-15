@@ -3,7 +3,9 @@ import { PostsListAllResponse, TinyPost } from 'types';
 import { axios } from '../../api/axios';
 import { PostCard } from './PostCard';
 import { Loading } from '../common/loading/Loading';
-import { useParams } from 'react-router-dom';
+import { useSearchParams } from 'react-router-dom';
+import { SortByPanel } from '../SortByPanel/SortByPanel';
+import { Pagination } from '../Pagination/Pagination';
 
 interface Props {
   tinyPosts?: TinyPost[];
@@ -11,11 +13,12 @@ interface Props {
 
 export const PostsList = ({ tinyPosts = [] }: Props) => {
 
+  const [totalPages, setTotalPages] = useState(0);
   const [posts, setPosts] = useState<TinyPost[]>(tinyPosts);
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(true);
+  const [searchParams] = useSearchParams();
 
-  const { author } = useParams();
 
   useEffect(() => {
     if (tinyPosts?.length > 0) {
@@ -24,25 +27,40 @@ export const PostsList = ({ tinyPosts = [] }: Props) => {
       return;
     }
     fetchPosts();
-  }, []);
+  }, [searchParams]);
 
   const fetchPosts = async () => {
     try {
-      const { data } = await axios.get(`posts`) as { data: PostsListAllResponse};
-      setPosts(data);
+      const page = searchParams.get('page');
+      const sortBy = searchParams.get('sortBy');
+      const order = searchParams.get('order');
+
+      const { data } = await axios.get<PostsListAllResponse>(`posts`, { params: { sortBy, order, page } });
+      setPosts(data.posts);
+      setTotalPages(data.totalPages);
     } catch (error) {
       console.log({ error });
     } finally {
       setLoading(false);
     }
+  };
+
+  if (loading) {
+    return null
   }
 
   return (
     <div className="text-center py-16">
 
-      <Loading loading={loading} className="text-8xl mt-20 mx-auto"/>
-      { posts.map(post => <PostCard post={ post }
-                                    key={ post.id } />) }
+      <Loading loading={ loading }
+               className="text-8xl mt-20 mx-auto" />
+      <SortByPanel />
+      <div className="flex flex-col items-center">
+        { posts.map(post => <PostCard post={ post }
+                                      key={ post.id } />) }
+        <Pagination totalPages={ totalPages } currentPage={ searchParams.has('page') ? Number(searchParams.get('page')) : 1 }/>
+      </div>
+
     </div>
   );
 };
