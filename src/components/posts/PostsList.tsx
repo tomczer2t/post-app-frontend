@@ -22,7 +22,7 @@ export const PostsList = ({ tinyPosts = [] }: Props) => {
       console.log(tinyPosts[0]);
       setLoading(false);
       return;
-    };
+    }
     fetchPosts();
   }, []);
 
