@@ -6,6 +6,7 @@ import { Loading } from '../common/loading/Loading';
 import { useSearchParams } from 'react-router-dom';
 import { SortByPanel } from '../SortByPanel/SortByPanel';
 import { Pagination } from '../Pagination/Pagination';
+import { Searchbar } from '../Searchbar/Searchbar';
 
 interface Props {
   tinyPosts?: TinyPost[];
@@ -29,13 +30,13 @@ export const PostsList = ({ tinyPosts = [] }: Props) => {
     fetchPosts();
   }, [searchParams]);
 
-  const fetchPosts = async () => {
+  const fetchPosts = async (search?: string) => {
     try {
       const page = searchParams.get('page');
       const sortBy = searchParams.get('sortBy');
       const order = searchParams.get('order');
 
-      const { data } = await axios.get<PostsListAllResponse>(`posts`, { params: { sortBy, order, page } });
+      const { data } = await axios.get<PostsListAllResponse>(`posts`, { params: { sortBy, order, page, search } });
       setPosts(data.posts);
       setTotalPages(data.totalPages);
     } catch (error) {
@@ -54,8 +55,9 @@ export const PostsList = ({ tinyPosts = [] }: Props) => {
 
       <Loading loading={ loading }
                className="text-8xl mt-20 mx-auto" />
-      <SortByPanel />
+      {/*<SortByPanel />*/}
       <div className="flex flex-col items-center">
+        <Searchbar fetchPosts={ fetchPosts }/>
         { posts.map(post => <PostCard post={ post }
                                       key={ post.id } />) }
         <Pagination totalPages={ totalPages } currentPage={ searchParams.has('page') ? Number(searchParams.get('page')) : 1 }/>

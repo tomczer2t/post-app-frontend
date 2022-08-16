@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
-import leftArrow from '../../assets/images/left-arrow-svgrepo-com.svg';
-import rightArrow from '../../assets/images/right-arrow-svgrepo-com.svg';
+import leftArrow from '../../assets/images/double-arrow-left-icon.svg';
+import rightArrow from '../../assets/images/double-arrow-right-icon.svg';
 import { useSearchParams } from 'react-router-dom';
 
 interface Props {
@@ -53,12 +53,16 @@ export const Pagination = ({ totalPages, currentPage }: Props) => {
     setSearchParams(searchParams);
   };
 
+  if (totalPages <= 1) {
+    return null
+  }
+
   return (
     <div className="flex bg-white rounded-xl">
       <button className="h-8 border-2 border-solid border-r-0 border-slate-500 w-12 rounded-l-lg hover:bg-slate-500 hover:text-white"
               onClick={ firstPage }>
         <img src={ leftArrow }
-             className="h-4 fill-blue-200 "
+             className="h-3"
              alt="" />
       </button>
       { pages.map((page, i) => (
@@ -69,7 +73,7 @@ export const Pagination = ({ totalPages, currentPage }: Props) => {
       <button className="h-8 border-2  border-solid border-slate-500 w-12 rounded-r-lg hover:bg-slate-500 hover:text-white"
               onClick={ lastPage }>
         <img src={ rightArrow }
-             className="h-4"
+             className="h-3"
              alt="" />
       </button>
     </div>
