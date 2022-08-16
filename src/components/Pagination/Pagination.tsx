@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import leftArrow from '../../assets/images/double-arrow-left-icon.svg';
 import rightArrow from '../../assets/images/double-arrow-right-icon.svg';
 import { useSearchParams } from 'react-router-dom';
+import { useViewportScroll } from 'framer-motion';
 
 interface Props {
   totalPages: number;
@@ -14,7 +15,7 @@ export const Pagination = ({ totalPages, currentPage }: Props) => {
   const [searchParams, setSearchParams] = useSearchParams();
 
   useEffect(() => {
-    console.log(totalPages);
+    window.scroll(0,0);
     if (totalPages <= 3) {
       setPages(Array.from({ length: totalPages }, (_, i) => i + 1));
       return;

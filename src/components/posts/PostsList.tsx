@@ -7,6 +7,7 @@ import { useSearchParams } from 'react-router-dom';
 import { SortByPanel } from '../SortByPanel/SortByPanel';
 import { Pagination } from '../Pagination/Pagination';
 import { Searchbar } from '../Searchbar/Searchbar';
+import { BookmarkHeader } from '../common/BookmarkHeader/BookmarkHeader';
 
 interface Props {
   tinyPosts?: TinyPost[];
@@ -47,20 +48,26 @@ export const PostsList = ({ tinyPosts = [] }: Props) => {
   };
 
   if (loading) {
-    return null
+    return null;
   }
 
   return (
-    <div className="text-center py-16">
+    <div className="text-center pb-16">
 
       <Loading loading={ loading }
                className="text-8xl mt-20 mx-auto" />
-      {/*<SortByPanel />*/}
+      {/*<SortByPanel />*/ }
       <div className="flex flex-col items-center">
-        <Searchbar fetchPosts={ fetchPosts }/>
+        <BookmarkHeader>
+          <div className="w-full flex flex-col md:flex-row justify-center items-center">
+            <h2>All Posts</h2>
+            <Searchbar fetchPosts={ fetchPosts } />
+          </div>
+        </BookmarkHeader>
         { posts.map(post => <PostCard post={ post }
                                       key={ post.id } />) }
-        <Pagination totalPages={ totalPages } currentPage={ searchParams.has('page') ? Number(searchParams.get('page')) : 1 }/>
+        <Pagination totalPages={ totalPages }
+                    currentPage={ searchParams.has('page') ? Number(searchParams.get('page')) : 1 } />
       </div>
 
     </div>

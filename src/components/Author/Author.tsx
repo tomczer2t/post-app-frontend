@@ -5,6 +5,10 @@ import { useEffect, useState } from 'react';
 import { PostsListAllResponse, TinyPost } from 'types';
 import { useParams } from 'react-router-dom';
 import { Loading } from '../common/loading/Loading';
+import { BookmarkHeader } from '../common/BookmarkHeader/BookmarkHeader';
+import { Searchbar } from '../Searchbar/Searchbar';
+import { PostCard } from '../posts/PostCard';
+import { Pagination } from '../Pagination/Pagination';
 
 
 export const Author = () => {
@@ -41,7 +45,14 @@ export const Author = () => {
         <>
           <AuthorHeader username={ posts[0].username }
                         avatarURL={ posts[0].avatarURL } />
-          <PostsList tinyPosts={ posts } />
+          <Loading loading={ loading }
+                   className="text-8xl mt-20 mx-auto" />
+          {/*<SortByPanel />*/}
+          <div className="flex flex-col items-center">
+            { posts.map(post => <PostCard post={ post }
+                                          key={ post.id } />) }
+            {/*<Pagination totalPages={ totalPages } currentPage={ searchParams.has('page') ? Number(searchParams.get('page')) : 1 }/>*/}
+          </div>
         </>
       ) }
     </article>

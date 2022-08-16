@@ -28,7 +28,7 @@ export const Searchbar = ({ fetchPosts }: Props) => {
   }, 1000, [term]);
 
   return (
-    <div className="h-10 w-full max-w-[800px] relative px-4 mb-8">
+    <div className="h-10 w-full md:basis-3/4 relative px-4">
       <input type="text"
              value={ term }
              onChange={ handleChange }
