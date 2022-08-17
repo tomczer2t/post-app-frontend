@@ -1,31 +1,27 @@
 import { useEffect, useState } from 'react';
 import { useAxiosPrivate } from '../../hooks/useAxiosPrivate';
 import { Loading } from '../common/loading/Loading';
-import { PostCard } from '../posts/PostCard';
-import { TinyPost } from 'types';
 import { useAuth } from '../../hooks/useAuth';
-import { Searchbar } from '../Searchbar/Searchbar';
 import { BookmarkHeader } from '../common/BookmarkHeader/BookmarkHeader';
-import { Link } from 'react-router-dom';
+import { Author } from 'types';
+import { FavouriteAuthorsList } from './FavouriteAuthorsList';
 
 export const FavouriteAuthors = () => {
 
-  const [posts, setPosts] = useState<TinyPost[]>([]);
+  const [authors, setAuthors] = useState<Author[]>([]);
   const [loading, setLoading] = useState(true);
   const { auth } = useAuth();
-  const favouriteAuthors = auth?.user?.favouriteAuthors;
   const axiosPrivate = useAxiosPrivate();
 
   useEffect(() => {
     if (auth) {
-      fetchPostsByFavAuthors()
+      getFavouriteAuthors();
     }
   }, [auth]);
 
-  const fetchPostsByFavAuthors = async () => {
-    const { data } = await axiosPrivate.get<TinyPost[]>('/posts/favourite-authors');
-    console.log(data);
-    setPosts(data);
+  const getFavouriteAuthors = async () => {
+    const { data } = await axiosPrivate.get<Author[]>('users/favourite-authors');
+    setAuthors(data);
     setLoading(false);
   }
 
@@ -34,20 +30,11 @@ export const FavouriteAuthors = () => {
 
       <BookmarkHeader>
         <div className="w-full flex flex-col md:flex-row justify-center items-center">
-          <h2>Posts written by your favourite authors</h2>
-          { favouriteAuthors && favouriteAuthors?.length > 0 && (
-            <select>
-              <option value="">Show</option>
-              {favouriteAuthors.map((author) => (
-                <option><Link to="/siema">{ author }</Link></option> //todo poprawić na coś co działa
-              )) }
-            </select>
-          )}
+          <h2>Favourite authors</h2>
         </div>
       </BookmarkHeader>
       <Loading loading={loading} className="text-8xl mt-20 mx-auto"/>
-      { posts.map(post => <PostCard post={ post }
-                                    key={ post.id } />) }
+      <FavouriteAuthorsList  authors={ authors }/>
     </div>
   );
 };
