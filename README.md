@@ -1,7 +1,4 @@
-![](https://i.imgur.com/wShy0zi.gif)
-
-
-
+![](https://user-images.githubusercontent.com/88483398/185054721-f708ddcb-694e-4288-bbd6-bb47e4f6267e.gif)
 
 
 # Getting Started with Create React App
