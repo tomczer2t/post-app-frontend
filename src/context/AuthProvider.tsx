@@ -13,6 +13,7 @@ interface Props {
 interface Auth {
   user: {
     id: string;
+    username: string;
     email: string;
     avatarURL?: string;
     favouriteAuthors: string[];

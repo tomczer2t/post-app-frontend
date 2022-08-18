@@ -2,7 +2,7 @@ import { FormEvent, useEffect, useState } from 'react';
 import { ContentState, convertToRaw, EditorState, RichUtils } from 'draft-js';
 import htmlToDraft from 'html-to-draftjs';
 import draftToHtml from 'draftjs-to-html';
-import { Link, useParams } from 'react-router-dom';
+import { Link, useNavigate, useParams } from 'react-router-dom';
 import { axios } from '../../api/axios';
 import { Editor } from 'react-draft-wysiwyg';
 import { FormGroup } from '../common/form/FormGroup';
@@ -32,6 +32,7 @@ export const PostEditor = () => {
   const [error, setError] = useState<string>('');
 
   const axiosPrivate = useAxiosPrivate();
+  const navigate = useNavigate();
 
   const { auth } = useAuth();
   const { postID } = useParams();
@@ -96,13 +97,13 @@ export const PostEditor = () => {
 
     try {
       console.log({ content });
-      const response = await axiosPrivate.post('posts', {
+      const response = await axiosPrivate.post<{postId: string}>('posts', {
         title,
         photoURL,
         headline,
         content,
       });
-      console.log({ response });
+      navigate(`/posts/${response.data.postId}`);
       // if (response.status === 201)
       // {
       //   setId(response.data.post.id);
