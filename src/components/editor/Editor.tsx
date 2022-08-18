@@ -44,7 +44,7 @@ export const PostEditor = () => {
   useEffect(() => {
     if (postID) {
       setId(postID);
-      getPost(postID);
+      void getPost(postID);
     } else {
       setTimeout(() => {
         setLoading(false);
@@ -61,7 +61,7 @@ export const PostEditor = () => {
           console.error('This blog is owned by someone else');
           setId('');
         } else {
-          let post = response.data.post; // zrobić as PostIneterface z backendu
+          const post = response.data.post; // zrobić as PostIneterface z backendu
           setTitle(post.title);
           setContent(post.content);
           setHeadline(post.headline);
@@ -104,15 +104,6 @@ export const PostEditor = () => {
         content,
       });
       navigate(`/posts/${response.data.postId}`);
-      // if (response.status === 201)
-      // {
-      //   setId(response.data.post.id);
-      //   setSucces('Post posted. You can continue to edit it on this page.');
-      // }
-      // else
-      // {
-      //   setError('Unable to save post.');
-      // }
     } catch (error: any) {
       setError(error.message);
     } finally {
