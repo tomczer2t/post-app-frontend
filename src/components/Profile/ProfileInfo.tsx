@@ -1,5 +1,4 @@
 import { useAuth } from '../../hooks/useAuth';
-import userDefault from '../../assets/images/default-user-img.jpeg';
 import { FollowInfo } from './FollowInfo';
 import { UserTopBar } from './UserTopBar';
 import { ProfileEditor } from './ProfileEditor';
