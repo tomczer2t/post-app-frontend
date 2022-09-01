@@ -41,7 +41,7 @@ export const Author = () => {
   return (
     <article className="px-4">
       <Loading loading={ loading } />
-      { !loading && (
+      { !loading && posts.length !== 0 && (
         <>
           <AuthorHeader username={ posts[0].username }
                         avatarURL={ posts[0].avatarURL } />

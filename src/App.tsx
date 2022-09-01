@@ -37,10 +37,9 @@ function App() {
                  element={ <LoginView /> } />
           <Route path="verify/:verificationCode"
                  element={ <EmailVerificationView /> } />
-          <Route path="profile"
+          <Route path="profile/*"
                  element={ <ProfileView /> } />
         </Route>
-
         <Route path="authors">
           <Route path=":author"
                  element={ <AuthorView /> } />

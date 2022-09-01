@@ -1,4 +1,5 @@
 import React, { createContext, useState } from 'react';
+import { UserRole } from 'types';
 
 export const AuthContext = createContext<{ auth: null | Auth, setAuth: React.Dispatch<React.SetStateAction<Auth | null>> }>({
   auth: null,
@@ -16,6 +17,7 @@ interface Auth {
     username: string;
     email: string;
     avatarURL?: string;
+    role: UserRole;
     favouriteAuthors: string[];
   },
   accessToken: string;

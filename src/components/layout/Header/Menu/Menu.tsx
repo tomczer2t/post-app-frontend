@@ -1,8 +1,6 @@
-import { motion, Variants } from 'framer-motion';
 import React, { useEffect, useLayoutEffect, useState } from 'react';
-import { Link, NavLink, useLocation } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
 import { Toggler } from './Toggler';
-import { Underline } from './Underline';
 import { useAuth } from '../../../../hooks/useAuth';
 import { MenuItem } from './MenuItem';
 import { MenuAuthItem } from './MenuAuthItem';
@@ -11,7 +9,7 @@ import { useRefresh } from '../../../../hooks/useRefresh';
 
 export const Menu = () => {
 
-  const { auth, setAuth } = useAuth();
+  const { auth } = useAuth();
 
   const [showMenu, setShowMenu] = useState(false);
   const location = useLocation();
