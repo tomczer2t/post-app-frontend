@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useDebounce } from '../../hooks/useDebounce';
 import { useAxiosPrivate } from '../../hooks/useAxiosPrivate';
-import { Loading } from '../common/loading/Loading';
+import { Loading } from '../common/Loading/Loading';
 
 interface Props {
   fetchPosts: (term?: string) => Promise<void>;

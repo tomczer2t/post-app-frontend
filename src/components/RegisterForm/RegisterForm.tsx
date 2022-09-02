@@ -1,9 +1,9 @@
-import { Form } from '../common/form/Form';
-import { FormGroup } from '../common/form/FormGroup';
-import { FormBtn } from '../common/form/FormBtn';
-import { FormLabel } from '../common/form/FormLabel';
-import { FormInput } from '../common/form/FormInput';
-import { FormHeadline } from '../common/form/FormHeadline';
+import { Form } from '../common/Form/Form';
+import { FormGroup } from '../common/Form/FormGroup';
+import { FormBtn } from '../common/Form/FormBtn';
+import { FormLabel } from '../common/Form/FormLabel';
+import { FormInput } from '../common/Form/FormInput';
+import { FormHeadline } from '../common/Form/FormHeadline';
 import { useCallback, useEffect, useState } from 'react';
 import { ErrorModal } from '../common/modals/ErrorModal';
 import { SuccessModal } from '../common/modals/SuccessModal';

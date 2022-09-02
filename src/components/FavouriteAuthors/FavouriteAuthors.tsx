@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useAxiosPrivate } from '../../hooks/useAxiosPrivate';
-import { Loading } from '../common/loading/Loading';
+import { Loading } from '../common/Loading/Loading';
 import { useAuth } from '../../hooks/useAuth';
 import { BookmarkHeader } from '../common/BookmarkHeader/BookmarkHeader';
 import { Author } from 'types';

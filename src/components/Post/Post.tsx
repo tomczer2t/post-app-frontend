@@ -1,9 +1,9 @@
 import { useEffect, useState } from 'react';
-import { Loading } from '../common/loading/Loading';
+import { Loading } from '../common/Loading/Loading';
 import { axios } from '../../api/axios';
 import { PostsGetSpecificResponse } from 'types';
 import { useParams } from 'react-router-dom';
-import { NotFound } from '../common/notFound/NotFound';
+import { NotFound } from '../common/NotFound/NotFound';
 
 export const Post = () => {
 

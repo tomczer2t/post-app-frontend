@@ -1,4 +1,4 @@
-import { Post } from '../components/post/Post';
+import { Post } from '../components/Post/Post';
 
 export const SpecificPost = () => {
   return (

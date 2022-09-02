@@ -1,5 +1,5 @@
 import { AnimatePresence, motion } from 'framer-motion';
-import { Loading } from '../common/loading/Loading';
+import { Loading } from '../common/Loading/Loading';
 
 interface Props {
   loading: boolean;

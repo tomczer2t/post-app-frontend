@@ -1,5 +1,5 @@
 import { Hero } from '../components/home/Hero';
-import { RecentPosts } from '../components/home/recentPosts/RecentPosts';
+import { RecentPosts } from '../components/home/RecentPosts/RecentPosts';
 
 export const HomeView = () => {
   return (

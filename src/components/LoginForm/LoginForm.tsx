@@ -1,16 +1,16 @@
 import { useEffect, useState } from 'react';
-import { Form } from '../common/form/Form';
-import { FormGroup } from '../common/form/FormGroup';
-import { FormLabel } from '../common/form/FormLabel';
-import { FormInput } from '../common/form/FormInput';
-import { FormBtn } from '../common/form/FormBtn';
+import { Form } from '../common/Form/Form';
+import { FormGroup } from '../common/Form/FormGroup';
+import { FormLabel } from '../common/Form/FormLabel';
+import { FormInput } from '../common/Form/FormInput';
+import { FormBtn } from '../common/Form/FormBtn';
 import { axios } from '../../api/axios';
 import { ErrorModal } from '../common/modals/ErrorModal';
 import { useAuth } from '../../hooks/useAuth';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { RefreshVerificationEmailBtn } from './RefreshVerificationEmailBtn';
 import { SuccessModal } from '../common/modals/SuccessModal';
-import { FormHeadline } from '../common/form/FormHeadline';
+import { FormHeadline } from '../common/Form/FormHeadline';
 
 export const LoginForm = () => {
   const [email, setEmail] = useState('');

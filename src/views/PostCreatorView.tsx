@@ -1,4 +1,4 @@
-import { PostEditor } from '../components/editor/Editor';
+import { PostEditor } from '../components/Editor/Editor';
 import image from '../assets/images/andrew-neel-cckf4TsHAuw-unsplash.jpeg';
 
 export const PostCreatorView = () => {

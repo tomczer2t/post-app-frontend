@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { PostsListAllResponse, TinyPost } from 'types';
 import { axios } from '../../api/axios';
 import { PostCard } from './PostCard';
-import { Loading } from '../common/loading/Loading';
+import { Loading } from '../common/Loading/Loading';
 import { useSearchParams } from 'react-router-dom';
 import { SortByPanel } from '../SortByPanel/SortByPanel';
 import { Pagination } from '../Pagination/Pagination';

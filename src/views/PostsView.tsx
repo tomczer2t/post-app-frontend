@@ -1,4 +1,4 @@
-import { PostsList } from '../components/posts/PostsList';
+import { PostsList } from '../components/PostsList/PostsList';
 
 export const PostsView = () => {
   return (

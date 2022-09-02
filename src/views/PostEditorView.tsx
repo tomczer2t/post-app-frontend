@@ -1,5 +1,5 @@
 import image from '../assets/images/andrew-neel-cckf4TsHAuw-unsplash.jpeg';
-import { PostEditor } from '../components/editor/Editor';
+import { PostEditor } from '../components/Editor/Editor';
 
 export const PostEditorView = () => {
   return (

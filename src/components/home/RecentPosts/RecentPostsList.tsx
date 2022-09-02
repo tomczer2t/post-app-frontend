@@ -1,5 +1,5 @@
 import { TinyPost } from 'types';
-import { RecentPostCard } from './card/RecentPostCard';
+import { RecentPostCard } from './RecentPostCard/RecentPostCard';
 
 interface Props {
   recentPosts: TinyPost[];

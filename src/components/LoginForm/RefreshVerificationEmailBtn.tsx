@@ -1,4 +1,4 @@
-import { Loading } from '../common/loading/Loading';
+import { Loading } from '../common/Loading/Loading';
 
 interface Props {
   onClick: (() => Promise<void>) | (() => void);

@@ -1,13 +1,13 @@
-import { PostsList } from '../posts/PostsList';
+import { PostsList } from '../PostsList/PostsList';
 import { AuthorHeader } from './AuthorHeader';
 import { axios } from '../../api/axios';
 import { useEffect, useState } from 'react';
 import { PostsListAllResponse, TinyPost } from 'types';
 import { useParams } from 'react-router-dom';
-import { Loading } from '../common/loading/Loading';
+import { Loading } from '../common/Loading/Loading';
 import { BookmarkHeader } from '../common/BookmarkHeader/BookmarkHeader';
 import { Searchbar } from '../Searchbar/Searchbar';
-import { PostCard } from '../posts/PostCard';
+import { PostCard } from '../PostsList/PostCard';
 import { Pagination } from '../Pagination/Pagination';
 
 

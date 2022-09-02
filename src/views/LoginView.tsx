@@ -1,4 +1,4 @@
-import { LoginForm } from '../components/login/LoginForm';
+import { LoginForm } from '../components/LoginForm/LoginForm';
 import image from '../assets/images/5394269.png';
 
 import { Link } from 'react-router-dom';

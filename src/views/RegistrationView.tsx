@@ -1,5 +1,5 @@
 import image from '../assets/images/5396346.jpg';
-import { RegisterForm } from '../components/register/RegisterForm';
+import { RegisterForm } from '../components/RegisterForm/RegisterForm';
 import { Link } from 'react-router-dom';
 
 export const RegistrationView = () => {
