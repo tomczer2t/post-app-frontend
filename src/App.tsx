@@ -11,6 +11,7 @@ import { SpecificPost } from './views/SpecificPost';
 import { AuthorView } from './views/AuthorView';
 import { ProfileView } from './views/ProfileView';
 import { FavouriteAuthorsView } from './views/FavouriteAuthorsView';
+import { PostEditorView } from './views/PostEditorView';
 
 function App() {
   return (
@@ -25,7 +26,9 @@ function App() {
           <Route index
                  element={ <PostsView /> } />
           <Route path="create"
-                 element={ <PostCreatorView /> } />
+                 element={ <PostEditorView /> } />
+          <Route path="edit/:postId"
+                 element={ <PostEditorView /> } />
           <Route path=":postId"
                  element={ <SpecificPost /> } />
         </Route>
@@ -46,7 +49,8 @@ function App() {
         </Route>
 
         <Route path="favourite-authors">
-          <Route index element={ <FavouriteAuthorsView /> } />
+          <Route index
+                 element={ <FavouriteAuthorsView /> } />
         </Route>
 
       </Route>

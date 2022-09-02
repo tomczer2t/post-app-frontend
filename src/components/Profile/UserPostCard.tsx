@@ -45,7 +45,9 @@ export const UserPostCard = ({ post, fetchPosts }: Props) => {
                 to={ `/posts/${ post.id }` }>
             <button className="rounded-md py-2 px-4 bg-slate-500 text-white w-full sm:w-auto">Show</button>
           </Link>
-          <button className="rounded-md py-2 px-4 bg-slate-600 text-white w-full sm:w-auto">Edit</button>
+          <Link className=" w-full sm:w-auto" to={ `/posts/edit/${ post.id }` }>
+            <button className="rounded-md py-2 px-4 bg-slate-600 text-white w-full sm:w-auto">Edit</button>
+          </Link>
           { !isDeleteActive && (
             <button className="rounded-md py-2 px-4 bg-slate-800 text-white w-full sm:w-auto"
                     onClick={ () => setIsDeleteActive(true) }>Delete</button>

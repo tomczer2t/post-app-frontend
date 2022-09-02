@@ -1,4 +1,4 @@
-import { FormEvent, useEffect, useState } from 'react';
+import { FormEvent, useCallback, useEffect, useState } from 'react';
 import { ContentState, convertToRaw, EditorState, RichUtils } from 'draft-js';
 import htmlToDraft from 'html-to-draftjs';
 import draftToHtml from 'draftjs-to-html';
@@ -10,6 +10,7 @@ import { FormLabel } from '../common/Form/FormLabel';
 import { FormInput } from '../common/Form/FormInput';
 import { Form } from '../common/Form/Form';
 import { ErrorModal } from '../common/modals/ErrorModal';
+import { PostsGetSpecificResponse } from 'types';
 // import { convertImages } from '../../utils/convertImages';
 import { useAxiosPrivate } from '../../hooks/useAxiosPrivate';
 import { useAuth } from '../../hooks/useAuth';
@@ -35,38 +36,26 @@ export const PostEditor = () => {
   const navigate = useNavigate();
 
   const { auth } = useAuth();
-  const { postID } = useParams();
+  const { postId } = useParams();
 
-  useEffect(() => {
-    setError('');
-  }, [title, photoURL, content, headline, editorState])
-
-  useEffect(() => {
-    if (postID) {
-      setId(postID);
-      void getPost(postID);
-    } else {
-      setTimeout(() => {
-        setLoading(false);
-      }, 100)
-    }
-  }, [postID]);
-
-  const getPost = async (id: string) => {
+  const getPost = useCallback(async (id: string) => {
+    if (!auth) return;
     try {
-      const response = await axiosPrivate.get(`posts/${ id }`);
+      const response = await axiosPrivate.get<PostsGetSpecificResponse>(`posts/${ id }`);
 
       if (response.status === 200 || response.status === 304) {
-        if (auth?.user.id !== response.data.post.author.id) {
+        if (auth?.user.id !== response.data.user.id) {
+          console.log({ auth: auth?.user.id });
+          console.log({ authorId: response.data.user.id })
           console.error('This blog is owned by someone else');
           setId('');
         } else {
-          const post = response.data.post; // zrobić as PostIneterface z backendu
+          const post = response.data;
           setTitle(post.title);
           setContent(post.content);
           setHeadline(post.headline);
           setPhotoURL(post.photoURL || '');
-          // convert html string to draft JS editor state
+
           const contentBlog = htmlToDraft(post.content);
           const contentState = ContentState.createFromBlockArray(contentBlog.contentBlocks);
           const _editorState = EditorState.createWithContent(contentState);
@@ -82,7 +71,22 @@ export const PostEditor = () => {
     } finally {
       setLoading(false);
     }
-  };
+  }, [auth, axiosPrivate]);
+
+  useEffect(() => {
+    setError('');
+  }, [title, photoURL, content, headline, editorState])
+
+  useEffect(() => {
+    if (postId) {
+      setId(postId);
+      void getPost(postId);
+    } else {
+      setTimeout(() => {
+        setLoading(false);
+      }, 100)
+    }
+  }, [postId, auth, getPost]);
 
   const handleCreatePost = async () => {
     if (title === '' || headline === '' || content === '') {
@@ -123,15 +127,15 @@ export const PostEditor = () => {
     setSaving(true);
 
     try {
-      const response = await axios.patch(`posts/${ id }`, {
+      const response = await axiosPrivate.patch(`posts/${ id }`, {
         title,
         photoURL,
         headline,
         content,
       });
 
-      if (response.status === 201) {
-        setSucces('Post edited.');
+      if (response.status === 200) {
+        navigate(`/posts/${response.data.postId}`);
       } else {
         setError('Unable to save post.');
       }
@@ -236,11 +240,6 @@ export const PostEditor = () => {
                     className="block bg-slate-500 px-4 py-2 rounded-md text-white">
               { id !== '' ? 'Update' : 'Post' }
             </button>
-            { id !== '' &&
-              <button className="bg-green-400 text-white">
-                <Link to={ `/posts/${ id }` }>View your post</Link>
-              </button>
-            }
           </div>
 
           <div>
