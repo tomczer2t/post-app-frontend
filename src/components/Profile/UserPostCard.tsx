@@ -35,7 +35,7 @@ export const UserPostCard = ({ post, fetchPosts }: Props) => {
              alt="" />
       </div>
 
-      <div className="flex flex-col">
+      <div className="flex flex-col flex-grow">
         <div className="p-2 text-sm flex-grow">
           <p className="font-bold text-slate-600">{ post.title }</p>
           <p className="hidden sm:block text-xs text-slate-500">{ post.headline }</p>

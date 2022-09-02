@@ -13,8 +13,8 @@ interface Props {
 
 export const PostCard = ({ post }: Props) => {
   return (
-    <article className="max-w-[800px] m-auto p-4 border-solid border-t-0 border-l-0 border-r-0 border-b-slate-400 mb-10 pb-14">
-      <div className="flex flex-col-reverse sm:flex-row ">
+    <article className="max-w-[800px] w-full m-auto p-4 border-solid border-t-0 border-l-0 border-r-0 border-b-slate-400 mb-10 pb-14">
+      <div className="flex flex-col-reverse sm:flex-row">
         <div className="sm:flex-1 text-left sm:mr-4">
           <div className="">
             <Link to={`/authors/${ encodeURI(post.username).toLowerCase() }`} className="flex justify-start items-center gap-x-2 text-slate-400 hover:text-slate-500  transition-colors duration-300 ">

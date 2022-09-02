@@ -1,6 +1,7 @@
 import { TinyPost } from 'types';
 import { useEffect, useState } from 'react';
-import { useAxiosPrivate } from '../../../hooks/useAxiosPrivate';
+import { useAxiosPrivate } from '../../../../hooks/useAxiosPrivate';
+import { PendingPostCard } from './PendingPostCard';
 
 export const PendingPosts = () => {
 
@@ -18,11 +19,9 @@ export const PendingPosts = () => {
 
   return (
     <div>
-      { posts.map(post => (
-        <div>
-          { post.title }
-        </div>
-      ))}
+      { posts.map(post => <PendingPostCard post={ post }
+                                           fetchPosts={ fetchPendingPosts }
+                                           key={ post.id } /> )}
     </div>
   );
 };

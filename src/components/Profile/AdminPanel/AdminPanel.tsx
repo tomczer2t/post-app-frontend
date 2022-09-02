@@ -2,7 +2,7 @@ import { AdminBookmarks } from './AdminBookmarks';
 import { Route, Routes } from 'react-router-dom';
 import { ProfilePosts } from '../ProfilePosts';
 import { Users } from './Users';
-import { PendingPosts } from './PendingPosts';
+import { PendingPosts } from './PendingPosts/PendingPosts';
 
 export const AdminPanel = () => {
 
