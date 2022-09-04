@@ -1,7 +1,9 @@
 import { motion, Variants } from 'framer-motion';
+import React from 'react';
 
 interface Props {
-  error: string,
+  children: React.ReactNode;
+  isOpen: boolean;
 }
 
 const variants: Variants = {
@@ -16,14 +18,13 @@ const variants: Variants = {
   }
 }
 
-export const VerificationError = ({ error }: Props) => {
+export const Verification = ({ isOpen, children }: Props) => {
 
-  if (!error) return null;
+  if (!isOpen) return null;
 
   return (
     <motion.div variants={ variants } animate="visible" initial="hidden">
-      <h2 className="text-red-600">Verification email error!</h2>
-      <p className="py-4">{ error }</p>
+      { children }
     </motion.div>
   );
 };

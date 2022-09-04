@@ -12,6 +12,7 @@ import { AuthorView } from './views/AuthorView';
 import { ProfileView } from './views/ProfileView';
 import { FavouriteAuthorsView } from './views/FavouriteAuthorsView';
 import { PostEditorView } from './views/PostEditorView';
+import { ChangeEmailVerificationView } from './views/ChangeEmailVerificationView';
 
 function App() {
   return (
@@ -40,6 +41,8 @@ function App() {
                  element={ <LoginView /> } />
           <Route path="verify/:verificationCode"
                  element={ <EmailVerificationView /> } />
+          <Route path="verify/email/:verificationCode"
+                 element={ <ChangeEmailVerificationView /> } />
           <Route path="profile/*"
                  element={ <ProfileView /> } />
         </Route>

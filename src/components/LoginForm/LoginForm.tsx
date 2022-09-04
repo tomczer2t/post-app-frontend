@@ -43,7 +43,6 @@ export const LoginForm = () => {
       setLoading(true);
       const { data: axiosDataResponse } = await axios.post('auth/login', { email, password }, { withCredentials: true });
       setAuth(axiosDataResponse.data);
-      console.log(axiosDataResponse)
       window.localStorage.setItem('stay-logged-in', JSON.stringify(true));
       navigate(from);
     } catch (error: any) {
