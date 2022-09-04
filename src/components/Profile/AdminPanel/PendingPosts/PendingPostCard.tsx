@@ -28,14 +28,14 @@ export const PendingPostCard = ({ fetchPosts, post }: Props) => {
     }
   };
 
-  const handleAccept =  async () => {
+  const handleAccept = async () => {
     try {
       await axiosPrivate.patch(`/posts/${ post.id }/status`, { status: PostStatus.ACCEPTED });
       await fetchPosts();
     } catch (e) {
       setError(true);
     }
-  }
+  };
 
   return (
     <div className="w-full border-solid border-slate-200 border-2 rounded-xl my-4 flex flex-col lg:flex-row-reverse overflow-hidden">
@@ -45,9 +45,10 @@ export const PendingPostCard = ({ fetchPosts, post }: Props) => {
              alt="" />
       </div>
 
-      <div className="flex flex-col">
+      <div className="flex flex-col w-full">
         <div className="pl-2">
-          <Link to={`/authors/${ encodeURI(post.username).toLowerCase() }`} className="flex flex-wrap justify-start items-center gap-x-2 text-slate-500 hover:text-slate-600  transition-colors duration-300 ">
+          <Link to={ `/authors/${ encodeURI(post.username).toLowerCase() }` }
+                className="flex flex-wrap justify-start items-center gap-x-2 text-slate-500 hover:text-slate-600  transition-colors duration-300 ">
             <div className="aspect-square w-8 overflow-hidden rounded-full bg-slate-600 border-solid border-slate-100">
               <img src={ post.avatarURL ? post.avatarURL : userDefault }
                    className="object-cover aspect-square"
@@ -68,7 +69,9 @@ export const PendingPostCard = ({ fetchPosts, post }: Props) => {
                 to={ `/posts/${ post.id }` }>
             <button className="rounded-md py-2 px-4 bg-slate-500 text-white w-full sm:w-auto">Show</button>
           </Link>
-          <button className="rounded-md py-2 px-4 bg-slate-600 text-white w-full sm:w-auto" onClick={ handleAccept }>Accept</button>
+          <button className="rounded-md py-2 px-4 bg-slate-600 text-white w-full sm:w-auto"
+                  onClick={ handleAccept }>Accept
+          </button>
           { !isRejetActive && (
             <button className="rounded-md py-2 px-4 bg-slate-800 text-white w-full sm:w-auto"
                     onClick={ () => setIsRejectActive(true) }>Reject</button>
@@ -85,7 +88,8 @@ export const PendingPostCard = ({ fetchPosts, post }: Props) => {
           ) }
         </div>
 
-        <ErrorModal error={ error } close={ () => setError(false) }>
+        <ErrorModal error={ error }
+                    close={ () => setError(false) }>
           <p>Something went wrong</p>
         </ErrorModal>
       </div>
