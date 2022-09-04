@@ -13,18 +13,27 @@ export const UserPostsList = () => {
   useEffect(() => {
     if (!auth) return;
     void fetchPosts();
-  }, [auth])
+  }, [auth]);
 
   const fetchPosts = async () => {
     const { data } = await axiosPrivate.get<GetUserPostsResponse>('/users/posts');
     setPosts(data.posts);
-  }
+  };
 
   return (
     <div>
-      { posts.map((post) => (
-        <UserPostCard post={post} fetchPosts={ fetchPosts } key={post.id}/>
-      ))}
+      { posts.length > 0 ? <>
+        { posts.map((post) => (
+          <UserPostCard post={ post }
+                        fetchPosts={ fetchPosts }
+                        key={ post.id } />
+        )) }
+      </> : <>
+        <p className="text-center pt-6 font-bold">
+          Lack of posts added by you.
+        </p>
+      </>
+      }
     </div>
   );
 };
