@@ -19,9 +19,16 @@ export const PendingPosts = () => {
 
   return (
     <div>
-      { posts.map(post => <PendingPostCard post={ post }
-                                           fetchPosts={ fetchPendingPosts }
-                                           key={ post.id } /> )}
+      { posts.length > 0 ?
+        <>
+          { posts.map(post => <PendingPostCard post={ post }
+                                               fetchPosts={ fetchPendingPosts }
+                                               key={ post.id } />) }
+        </> : <>
+          <p className="text-center pt-6 font-bold">
+            Lack of pending posts.
+          </p>
+        </> }
     </div>
   );
 };
