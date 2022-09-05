@@ -29,7 +29,7 @@ export const Avatar = ({ avatarURL }: Props) => {
   return (
     <div className="relative w-20 md:w-full">
       <img src={ avatarURL ? avatarURL : userDefault }
-           className="object-fit aspect-square rounded-full border-solid border-slate-200 border-2 cursor-pointer"
+           className="object-cover w-full aspect-square rounded-full border-solid border-slate-200 border-2 cursor-pointer"
            onClick={ () => setIsClicked(prev => !prev) }
            alt="" />
       { isClicked && (

@@ -43,7 +43,7 @@ export const AuthorHeader = ({ username, avatarURL }: Props) => {
       <div className="hidden bg-white h-8 w-[200px] md:block absolute top-10 right-24 rotate-[110deg] z-10" />
       <div className="aspect-square w-28 overflow-hidden rounded-full bg-slate-600">
         <img src={ avatarURL ? avatarURL : userDefault }
-             className="object-cover"
+             className="object-cover h-full"
              alt="" />
       </div>
     </div>
