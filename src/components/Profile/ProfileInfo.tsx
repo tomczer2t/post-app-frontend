@@ -1,6 +1,6 @@
 import { useAuth } from '../../hooks/useAuth';
 import { FollowInfo } from './FollowInfo';
-import { UserTopBar } from './UserTopBar';
+import { UserTopBar } from './UserTopBar/UserTopBar';
 import { ProfileEditor } from './ProfileEditor';
 
 export const ProfileInfo = () => {
