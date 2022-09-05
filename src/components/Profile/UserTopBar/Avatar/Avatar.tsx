@@ -1,5 +1,5 @@
-import userDefault from '../../../../assets/images/default-user-img.jpeg';
 import { useState } from 'react';
+import userDefault from '../../../../assets/images/default-user-img.jpeg';
 import { useAxiosPrivate } from '../../../../hooks/useAxiosPrivate';
 import { useAuth } from '../../../../hooks/useAuth';
 
@@ -17,7 +17,6 @@ export const Avatar = ({ avatarURL }: Props) => {
     setIsClicked(false);
     if (!e.target.files?.[0]) return;
     const formData = new FormData();
-    console.log(e.target.files[0]);
     formData.append('file', e.target.files[0], e.target.files[0].name);
     const { data } = await axiosPrivate.patch<string | undefined>('users/avatar', formData);
     setAuth((prev) => {
