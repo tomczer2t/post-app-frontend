@@ -1,9 +1,11 @@
-import { UserPost } from 'types';
+import { UserPost, PostStatus } from 'types';
 import defaultImage from '../../assets/images/default-post-img.avif';
 import { Link } from 'react-router-dom';
 import { useState } from 'react';
 import { useAxiosPrivate } from '../../hooks/useAxiosPrivate';
 import { ErrorModal } from '../common/modals/ErrorModal';
+import { AiOutlineCloseCircle, AiOutlineCheckCircle } from 'react-icons/ai';
+import { HiOutlineDotsCircleHorizontal } from 'react-icons/hi';
 
 interface Props {
   post: UserPost;
@@ -40,12 +42,26 @@ export const UserPostCard = ({ post, fetchPosts }: Props) => {
           <p className="font-bold text-slate-600">{ post.title }</p>
           <p className="hidden sm:block text-xs text-slate-500">{ post.headline }</p>
         </div>
+        <div className="p-2">
+          <>
+            { post.status === PostStatus.PENDING && (
+              <p className="text-slate-500 text-sm py-0 my-0 flex"><HiOutlineDotsCircleHorizontal className="mr-2 text-slate-600 text-xl" />Post not accepted yet.</p>
+            ) }
+            { post.status === PostStatus.ACCEPTED && (
+              <p className="text-slate-500 text-sm py-0 my-0 flex"><AiOutlineCheckCircle className="mr-2 text-green-600 text-xl" />Post accepted.</p>
+            ) }
+            { post.status === PostStatus.REJECTED && (
+              <p className="text-slate-500 text-sm py-0 my-0 flex"><AiOutlineCloseCircle className="mr-2 text-red-600 text-xl" />Post rejected.</p>
+            ) }
+          </>
+        </div>
         <div className="flex flex-wrap gap-2 m-2 justify-start">
           <Link className=" w-full sm:w-auto"
                 to={ `/posts/${ post.id }` }>
             <button className="rounded-md py-2 px-4 bg-slate-500 text-white w-full sm:w-auto">Show</button>
           </Link>
-          <Link className=" w-full sm:w-auto" to={ `/posts/edit/${ post.id }` }>
+          <Link className=" w-full sm:w-auto"
+                to={ `/posts/edit/${ post.id }` }>
             <button className="rounded-md py-2 px-4 bg-slate-600 text-white w-full sm:w-auto">Edit</button>
           </Link>
           { !isDeleteActive && (
@@ -64,7 +80,8 @@ export const UserPostCard = ({ post, fetchPosts }: Props) => {
           ) }
         </div>
 
-        <ErrorModal error={ error } close={ () => setError(false) }>
+        <ErrorModal error={ error }
+                    close={ () => setError(false) }>
           <p>Something went wrong</p>
         </ErrorModal>
       </div>
