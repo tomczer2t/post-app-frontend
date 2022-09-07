@@ -100,7 +100,6 @@ export const PostEditor = () => {
     setSaving(true);
 
     try {
-      console.log({ content });
       const response = await axiosPrivate.post<{postId: string}>('posts', {
         title,
         photoURL,
@@ -141,7 +140,7 @@ export const PostEditor = () => {
       });
 
       if (response.status === 200) {
-        navigate(`/posts/${response.data.postId}`);
+        navigate(`/posts/${response.data.postId}`, { state: { justCreated: true }});
       } else {
         setError('Unable to save post.');
       }
