@@ -107,9 +107,15 @@ export const PostEditor = () => {
         headline,
         content,
       });
-      navigate(`/posts/${response.data.postId}`);
+      navigate(`/posts/${response.data.postId}`, { state: { justCreated: true }});
     } catch (error: any) {
-      setError(error.message);
+      const responseStatus = error?.response?.status;
+      if (responseStatus >= 500) {
+        setError('Something went wrong. Please try again later.')
+        return;
+      }
+      const err = error?.response?.data || error;
+      setError(err.error || error.message);
     } finally {
       setSaving(false);
     }

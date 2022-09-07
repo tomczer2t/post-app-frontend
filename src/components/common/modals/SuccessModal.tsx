@@ -24,13 +24,7 @@ interface Props {
 
 export const SuccessModal = ({ close, success, children }: Props) => {
 
-  // const [timer, setTimer] = useState(0);
-  //
-  // useEffect(() => {
-  //
-  // }, []);
-
-  return (
+   return (
     <AnimatePresence>
       { success && (
         <motion.div variants={modalVariants} initial="hidden" exit="exit" animate="visible" className="text-center p-6 rounded-md max-w-[400px] bg-green-200 text-green-600 border-solid border-green-600 fixed left-4 bottom-8">
