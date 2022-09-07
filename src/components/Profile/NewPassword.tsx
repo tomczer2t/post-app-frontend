@@ -36,13 +36,21 @@ export const NewPassword = () => {
       console.log(e);
       setError(message);
     }
-  }
+  };
 
   const handleChange = (setValue: React.Dispatch<React.SetStateAction<string>>, value: string) => {
     setSuccess(false);
     setError('');
     setValue(value);
-  }
+  };
+
+  const handleCancel = () => {
+    setIsPasswordOpen(false);
+    setNewPassword('');
+    setOldPassword('');
+    setRepetition('');
+    setError('');
+  };
 
   return (
     <>
@@ -52,23 +60,24 @@ export const NewPassword = () => {
           Change password
         </button>
       ) : (
-        <form onSubmit={ handleSave }>
+        <form onSubmit={ handleSave }
+              onLoad={ (e) => { e.preventDefault(); } }>
           <input type="password"
                  required
                  value={ newPassword }
-                 onChange={ (e) => handleChange(setNewPassword, e.target.value)}
+                 onChange={ (e) => handleChange(setNewPassword, e.target.value) }
                  placeholder="New password"
                  className="w-full p-2 rounded-lg bg-neutral-100 text-slate-600 font-bold text-center border-solid border-2 border-slate-500 my-2" />
           <input type="password"
                  required
                  value={ repetition }
-                 onChange={ (e) => handleChange(setRepetition, e.target.value)}
+                 onChange={ (e) => handleChange(setRepetition, e.target.value) }
                  placeholder="Repeat password"
                  className="w-full p-2 rounded-lg bg-neutral-100 text-slate-600 font-bold text-center border-solid border-2 border-slate-500 my-2" />
           <input type="password"
                  required
                  value={ oldPassword }
-                 onChange={ (e) => handleChange(setOldPassword, e.target.value)}
+                 onChange={ (e) => handleChange(setOldPassword, e.target.value) }
                  placeholder="Old password"
                  className="w-full p-2 rounded-lg bg-neutral-100 text-slate-600 font-bold text-center border-solid border-2 border-slate-500 my-2" />
           <div className="flex gap-2">
@@ -76,15 +85,18 @@ export const NewPassword = () => {
                     className="py-2 px-6 rounded-lg bg-green-500 text-white text-center border-solid border-2 border-green-600 my-2">Save
             </button>
             <button type="submit"
-                    className="py-2 px-6 rounded-lg bg-neutral-500 text-white text-center border-solid border-2 border-neutral-600 my-2" onClick={ () => setIsPasswordOpen(false) }>Cancel
+                    className="py-2 px-6 rounded-lg bg-neutral-500 text-white text-center border-solid border-2 border-neutral-600 my-2"
+                    onClick={ handleCancel }>Cancel
             </button>
           </div>
         </form>
       ) }
-      <ErrorModal close={ () => setError('') } error={ error } />
-      <SuccessModal close={ () => setSuccess(false) } success={ success }>
+      <ErrorModal close={ () => setError('') }
+                  error={ error } />
+      <SuccessModal close={ () => setSuccess(false) }
+                    success={ success }>
         <p>Successfully changed password</p>
       </SuccessModal>
     </>
-  )
-}
+  );
+};

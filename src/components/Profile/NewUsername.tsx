@@ -32,7 +32,6 @@ export const NewUsername = () => {
       setIsUsernameOpen(false);
     } catch (e: any) {
       const message = e.response?.data?.error || e.message;
-      console.log(e);
       setError(message);
     }
   }
@@ -41,6 +40,12 @@ export const NewUsername = () => {
     setSuccess(false);
     setError('');
     setValue(value);
+  }
+
+  const handleCancel = () => {
+    setIsUsernameOpen(false);
+    setUsername('');
+    setError('');
   }
 
   return (
@@ -63,7 +68,7 @@ export const NewUsername = () => {
                     className="py-2 px-6 rounded-lg bg-green-500 text-white text-center border-solid border-2 border-green-600 my-2">Save
             </button>
             <button type="submit"
-                    className="py-2 px-6 rounded-lg bg-neutral-500 text-white text-center border-solid border-2 border-neutral-600 my-2" onClick={ () => setIsUsernameOpen(false) }>Cancel
+                    className="py-2 px-6 rounded-lg bg-neutral-500 text-white text-center border-solid border-2 border-neutral-600 my-2" onClick={ handleCancel }>Cancel
             </button>
           </div>
         </form>

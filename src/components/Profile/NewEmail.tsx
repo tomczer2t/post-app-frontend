@@ -27,8 +27,8 @@ export const NewEmail = () => {
       const { data } = await axiosPrivate.patch<UpdateProfileResponse>('/users', { email, password });
       setAuth(prev => {
         if (prev === null) return null;
-        return { ...prev, user: { ...prev.user, username: data.username }};
-      })
+        return { ...prev, user: { ...prev.user, username: data.username } };
+      });
       setEmail('');
       setPassword('');
       setSuccess(true);
@@ -37,13 +37,20 @@ export const NewEmail = () => {
       const message = e.response?.data?.error || e.message;
       setError(message);
     }
-  }
+  };
 
   const handleChange = (setValue: React.Dispatch<React.SetStateAction<string>>, value: string) => {
     setSuccess(false);
     setError('');
     setValue(value);
-  }
+  };
+
+  const handleCancel = () => {
+    setIsEmailOpen(false);
+    setEmail('');
+    setPassword('');
+    setError('');
+  };
 
   return (
     <>
@@ -57,13 +64,13 @@ export const NewEmail = () => {
           <input type="email"
                  required
                  value={ email }
-                 onChange={ (e) => handleChange(setEmail, e.target.value)}
+                 onChange={ (e) => handleChange(setEmail, e.target.value) }
                  placeholder="New email"
                  className="w-full p-2 rounded-lg bg-neutral-100 text-slate-600 font-bold text-center border-solid border-2 border-slate-500 my-2" />
           <input type="password"
                  required
                  value={ password }
-                 onChange={ (e) => handleChange(setPassword, e.target.value)}
+                 onChange={ (e) => handleChange(setPassword, e.target.value) }
                  placeholder="Password"
                  className="w-full p-2 rounded-lg bg-neutral-100 text-slate-600 font-bold text-center border-solid border-2 border-slate-500 my-2" />
           <div className="flex gap-2">
@@ -71,15 +78,18 @@ export const NewEmail = () => {
                     className="py-2 px-6 rounded-lg bg-green-500 text-white text-center border-solid border-2 border-green-600 my-2">Save
             </button>
             <button type="submit"
-                    className="py-2 px-6 rounded-lg bg-neutral-500 text-white text-center border-solid border-2 border-neutral-600 my-2" onClick={ () => setIsEmailOpen(false) }>Cancel
+                    className="py-2 px-6 rounded-lg bg-neutral-500 text-white text-center border-solid border-2 border-neutral-600 my-2"
+                    onClick={ handleCancel }>Cancel
             </button>
           </div>
         </form>
       ) }
-      <ErrorModal close={ () => setError('') } error={ error } />
-      <SuccessModal close={ () => setSuccess(false) } success={ success }>
+      <ErrorModal close={ () => setError('') }
+                  error={ error } />
+      <SuccessModal close={ () => setSuccess(false) }
+                    success={ success }>
         <p>Verification mail was sent to { auth?.user.email }</p>
       </SuccessModal>
     </>
-  )
-}
+  );
+};
