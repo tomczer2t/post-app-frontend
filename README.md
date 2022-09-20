@@ -11,7 +11,7 @@ Create posts. Follow best bloggers.
 
 ## General info
 This project is a client side application, made for creating and reading posts.
-Front-end repository - https://github.com/tomczer2t/post-app-backedn
+Front-end repository - https://github.com/tomczer2t/post-app-backend
 Main goals of this entire project was to practice making full-stack application with React.js and Nest.js, practice authentication with JWT strategy and working with TypeOrm supported by MySQL database, and practice styling with Tailwind CSS.
 
 
